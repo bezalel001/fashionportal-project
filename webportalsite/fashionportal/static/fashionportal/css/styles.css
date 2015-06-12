@@ -1,0 +1,37 @@
+body {
+	padding-top: 120px;
+	
+}
+
+
+
+#main-picture {
+	margin-top: 80px
+}
+
+#navbar-brand, #member-name {
+	font-family: 'Parisienne', cursive;
+	font-weight: 400;
+	font-size: 25px;
+}
+.navbar{
+	margin-bottom: 80px
+}
+
+#signup, #login {
+	font-family: 'Pinyon Script', cursive;
+}
+
+.blog{
+	padding-top: 0px;	
+}
+#id_headline, #id_body_text, #id_image, #post-blog-entry {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.post-description {
+	background-color: #EDEDED
+}
+
+

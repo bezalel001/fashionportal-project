@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<h2 id="member-name">{{member.first_name}} {{member.last_name}} </h2>
+		</div>
+		<div class="col-sm-8">
+			{% if messages %}
+				<ul class="messages">
+				    {% for message in messages %}
+				    <li class="alert alert-success">{{ message }}</li>
+				    {% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				
+				<div class="panel-body">
+					<div class="panel panel-default">
+						<div class="panel-body">
+						{% if member.userprofile.profile_image %}
+						<!-- Profile picture -->
+							{% load cropping %}
+                			<img src="{% cropped_thumbnail member.userprofile 'cropping' scale=0.5 %}" class="center-block" alt="Profile Picture">
+                		{% else %}
+                		<h2>Profile Picture</h2>
+                		{% endif %}
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+						<a href="https://www.facebook.com/"><strong>Facebook</strong> </a>
+						<p >{{ user.email | urlize }}</p>
+						
+						<p style="display:inline;">Phone number: {{member.userprofile.phone}}</p><br />
+						<p >Occupation: {{member.userprofile.occupation}}</p> 
+						
+						</div>
+					</div>
+					<a href="{% url 'fashionportal:edit-profile' member.username %}">
+						<button class="btn btn-primary">Edit Profile</button>
+					</a>				
+					
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+			 <div class="panel-body blog">
+				<h1 >Blog</h1>
+				<a href="{% url 'fashionblog:entry' %}">
+					<button class="btn btn-primary ">create entry</button>
+				</a>
+			</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="panel panel-default">
+				
+				<div class="panel-body">
+				<h3>Bio</h3>
+				<p>{{member.userprofile.bio}}</p>				
+				<br />
+				
+				{% if not member.userprofile.postentry  %}
+				<a href="{% url 'fashionportal:createpost' %}">
+					<button class="btn btn-primary pull-right" type="submit">Create Post</button>
+				</a>
+				{% endif %}
+				
+				<br />
+				<hr />
+
+				{% if member.userprofile.postentry  %}
+				<div class="panel panel-default">
+					<div class="panel-body">
+					
+						<p> {{member.userprofile.postentry.description}}</p>
+						{% if member.userprofile.postentry.photo %}
+						<img src="/media/{{member.userprofile.postentry.photo.name}}" class="center-block" width="100%">
+						{% else %}
+						<p></p>
+						{% endif %}
+					
+					</div>
+				</div>
+				<a href="{% url 'fashionportal:editpost' user.id %}">
+						<button class="btn btn-primary">Edit Post</button>
+				</a>
+				<a href="{% url 'fashionportal:deletepost' user.id %}">
+						<button class="btn btn-primary pull-right">Delete Post</button>
+				</a>
+				{% endif %}
+				<hr>					
+				</div>
+			</div>			
+		</div>
+	</div>
+	
+</div>
+    
+{% endblock %}

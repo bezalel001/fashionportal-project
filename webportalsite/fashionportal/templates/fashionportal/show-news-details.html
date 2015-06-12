@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">	
+
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3>{{news.headline}}</h3>
+	    <hr />
+	    <h4>{{news.pub_date}}</h4>
+	  </div>
+	  <div class="panel-body">
+	    <p>{{news.body }}</p>
+	   
+	  </div>
+	</div>
+
+
+</div>
+    
+{% endblock %}

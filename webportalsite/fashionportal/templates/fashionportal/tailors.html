@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+{% if tailors_posts %}
+    {% for tailor in tailors_posts %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+       <div class="col-sm-4">
+         <div class="panel panel-default">
+           <div class="panel-body">
+               {% load cropping %}
+                <img src="{% cropped_thumbnail tailor 'cropping' scale=0.5 %}">
+                
+           </div>
+         </div>
+       </div>
+       <div class="col-sm-8">
+         <div class="panel panel-default">
+           <div class="panel-body">
+              {{tailor.description}}
+           </div>
+         </div>
+       </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default">
+           <div class="panel-body">
+           <hr>
+           <p><strong>Name:</strong><em>{{tailor.posted_by.user>first_name}}</em></p>
+           <p><strong>Name:<em>{{tailor.posted_by.user.last_name}}</em></strong></p>
+           <p><strong>Occupation: <em>{{tailor.posted_by>occupation}}</em></strong></p>
+              <p><strong>Brand name; <em>{{tailor.brand_name}}</em></strong></p>
+              <p><strong>Location: <em>{{tailor.location}}</em></strong></p>
+              <p><strong></strong></p>
+              <p><strong>Email: <em>{{tailor.posted_by.user.email}}</em></strong></p>
+           </div>
+         </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="panel panel-default">
+           <div class="panel-body">
+              {% include 'fashionportal/main-carousel.html' %}
+           </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+    
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+  {% block navigation %}
+    <!-- Navigation-->
+    {% include 'fashionportal/navigation.html' with active_link='fashionportal:home' %}
+    <!-- end of navigation -->
+  {% endblock %} 
+
+{% block content %}
+
+ <!-- Carousel -->
+ {% include 'fashionportal/main-carousel.html' %}
+  <!-- end of Carousel-->
+  <br />
+  <hr />
+  <br />
+  <div class="container">
+  	<div class="row">
+  		<div class="col-sm-4">
+	  		{% if latest_gallery != None %}
+	  				{% load cropping %}
+       				<img src="{% cropped_thumbnail latest_gallery.thumbnail_set.all.1  'cropping' scale=1.0 %}" class="img-responsive">
+        {% endif %}
+	  			 			
+  		</div>
+  		<div class="col-sm-4">
+  			   {% if latest_news != None %}
+	  				<img src="{% cropped_thumbnail latest_news 'cropping' scale=1.0 %}" class="img-responsive">
+	  			{% endif %}
+  		</div>
+  		<div class="col-sm-4">
+  			{% if latest_event != None %}
+	  				{% load cropping %}
+       				<img src="{% cropped_thumbnail latest_event  'cropping' scale=1.0 %}" class="img-responsive">
+	  		{% endif %}
+  		</div>
+  	</div>
+  	
+  </div>
+
+
+{% endblock %}

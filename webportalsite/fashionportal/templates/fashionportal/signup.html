@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-1">
+			
+			
+		</div>
+		<div class="col-sm-10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	    			<h3>Register</h3>
+	  			</div>
+	  			<div class="panel-body">
+	  				<div class="form-group">
+	   				 <form action="{% url 'fashionportal:signup' %}" method="post" >
+				    	{% csrf_token %}
+				    	{{form.as_p}}
+	    				<input type="submit" value="Signup" class="form-control">
+	    			</form>
+	    			</div>
+	  			</div>
+			</div>
+			
+		</div>
+		<div class="col-sm-1">
+			
+			
+		</div>
+	</div>
+</div>
+
+
+    
+{% endblock %}

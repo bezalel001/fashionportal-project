@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+ 
+
+
+
+<div class="container">
+    
+
+      <div class="blog-header">
+
+
+        <h1 class="blog-title">{{blogPost.blog.title}}</h1>
+        <p class="lead blog-description">Fashion Blog.</p>
+      </div>
+
+      <div class="row">
+      <div class="col-sm-3 col-sm-push-8 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+            {% for blogPost in object_list %}
+              <li><a href="#">{{blogPost.pub_date}} </a></li>
+            {% endfor %}
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            
+          </div>
+        </div><!-- /.blog-sidebar -->
+      
+
+        
+
+        <!-- blog-post -->
+         {% if object_list %}
+         <div class="col-sm-8 col-sm-pull-4 blog-main">
+
+          {% for blogPost in object_list %}
+          <div class="well">
+            
+            <div class="blog-post">
+            <h2 class="blog-post-title">{{blogPost.headline}}</h2>
+            <p class="blog-post-meta">{{blogPost.pub_date}} by 
+            
+            <a href="#">{{ blogPost.author }}</a> 
+            
+            </p>
+
+            <p>{{blogPost.body_text | truncatewords:40}}</p>
+            
+
+            <a href="{% url 'fashionportal:blog_entry_detail' blogPost.id %}">
+              <button type="button" class="btn btn-info btn-lg" > Read more</button> 
+            </a>
+            
+            <!--   -->
+            <hr>  
+            
+              
+            
+            <img src="/media/{{blogPost.photo.name.path}}" class="img-responsive " width="50%" />         
+            
+          </div><!-- /.blog-post -->
+          
+              
+           </div>
+           {% endfor %}
+          </div> 
+          {% endif  %}  
+          
+
+         {% if object_list > 5 %}
+          <nav>
+            <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </nav>
+          {% endif %}
+
+        </div><!-- /.blog-main -->
+
+        
+
+      
+      
+    </div><!-- /.container -->
+    <div class="container">
+    <footer class="blog-footer">
+      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    </div>
+
+{% endblock %}

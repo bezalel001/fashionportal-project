@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="container">
+ 	
+ 		<div class="jumbotron">
+ 		 {% load cropping %} 
+ 			<img src="{% cropped_thumbnail photo 'cropping' scale=2.0 %}" class="img-responsive img-rounded center-block" />
+ 		
+
+ 		</div>
+ 	
+ </div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+ {% block navigation %}
+    <!-- Navigation-->
+    {% include 'fashionportal/navigation.html' with active_link='fashionportal:models' %}
+    <!-- end of navigation -->
+  {% endblock %} 
+
+{% block content %}
+<div class="container">
+{% if models_posts %}
+    {% for model in models_posts %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+       <div class="col-sm-4">
+         <div class="panel panel-default">
+           <div class="panel-body">
+               {% load cropping %}
+                <img src="{% cropped_thumbnail model.posted_by 'cropping' scale=0.5 %}" class="center-block">
+                
+           </div>
+         </div>
+       </div>
+       <div class="col-sm-8">
+         <div class="panel panel-default">
+           <div class="panel-body">
+            <p><small>{{model.posted_by.creation_date}}</small></p>
+              {{model.description}}
+           </div>
+         </div>
+       </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default">
+           <div class="panel-body">
+           <p><strong>Name: </strong><i>
+           {{model.posted_by.user.first_name}} 
+           {{model.posted_by.user.last_name}}
+           </i></p>
+           <p><strong>Occupation: </strong><i>{{model.posted_by.occupation }}</i></p>
+           <p><strong>Brand name: </strong><i>{{model.posted_by.brand_name}}</i></p>
+           <p><strong>Location: </strong><i>{{model.posted_by.location}}</i></p>
+          <p>{{ model.posted_by.user.email | urlize }}</p>
+           </div>
+         </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="panel panel-default">
+           <div class="panel-body">
+              <img src="/media/{{model.photo.name}}" class="center-block" width="100%">
+            </div>
+           </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+    
+

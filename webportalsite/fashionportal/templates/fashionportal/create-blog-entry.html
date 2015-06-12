@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			
+		</div>
+		<div class="panel-body">
+			<form action="{% url 'fashionblog:entry' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+				<div class="form-group">
+				<table>
+				{{ form.as_table}}
+				
+				</table>
+				<input type="submit" value="Post" id="post-blog-entry" class="btn btn-primary" />
+				<a href="{% url 'fashionportal:profile' user.username %}">
+					<button type="button" class="btn btn-primary">Cancel</button>
+				</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
